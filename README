@@ -1,0 +1,25 @@
+Here are the scripts I used to train an HTK recognizer using 
+the spanish data I found on Voxforge (approx. 20 hours). The 
+data are not perfect but one can build a baseline recognizer using them. The
+recipe is based on Keith Vertanen's scripts for HTK TIMIT + WSJ 
+ASR training (http://www.keithv.com/software/htk).
+
+Experimenting with Makefiles these days, I wrote the entire 
+process as a Makefile and I have to say it can be quite convenient for this task.
+However, there are many things that I haven't really fixed and haven't
+yet fully harnessed the power of make :) This is yet to be done.
+
+The idea is to just write (after updating the paths in the makefile):
+make all
+
+and wait. Of course you may need to delve deeper into the code if you have more 
+specific needs. I haven't really tested it yet in an independent setup so it
+may need minor modifications to work for a different dataset or on a 
+different machine. I will be working on it and this code should only 
+be considered as a working version and not an official release.
+
+In case you just need the spanish acoustic models for HTK, please feel free
+to contact me and I could share them with you. If you have spanish data
+you would like to train an ASR on, we could work on that together. 
+
+Nassos Katsamanis
