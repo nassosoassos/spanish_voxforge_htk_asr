@@ -86,8 +86,8 @@ local_features:
 hcompv:
 	hcompv_dir=$(MODELDIR)/hmm0;\
 	mkdir -p $${hcompv_dir};\
-	$(HCOMPVBIN) -A -T 1 -f 0.01 -m -S $(TRAINSCP) -M $${hcompv_dir} $(LIBDIR)/proto > $${hcompv_dir}/hcompv_flat.log; \
-	cp $(LIBDIR)/macros $${hcompv_dir}; \
+	$(HCOMPVBIN) -A -T 1 -f 0.01 -m -S $(TRAINSCP) -M $${hcompv_dir} lib_files/proto > $${hcompv_dir}/hcompv_flat.log; \
+	cp lib_files/macros $${hcompv_dir}; \
 	cat $${hcompv_dir}/vFloors >> $${hcompv_dir}/macros; \
 	perl scripts/CreateHMMDefs.pl $${hcompv_dir}/proto $(PHONELIST) > $${hcompv_dir}/hmmdefs;
 
