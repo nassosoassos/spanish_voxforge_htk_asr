@@ -95,8 +95,16 @@ while ($line = <IN>)
     # Now determine if we had a node line or an edge line
     if (($id eq "") && ($word eq ""))
     {
+    # Discard emtpy start and end tags (otherwise graphviz throws an error)
+    if(($start eq "") && ($end eq ""))
+    {
+    printf STDERR "Discarding a edge line, because the start AND end label are empty\n";
+    }
+    else
+    {
 	# Edge line	
 	printf "\t$start -> $end [label = \"a=$acoustic l=$lm\"];\n";
+    }
     }
     else
     {
