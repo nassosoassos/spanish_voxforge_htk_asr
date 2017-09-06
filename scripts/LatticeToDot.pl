@@ -46,6 +46,9 @@ my $start = "";
 my $end = "";
 my $acoustic = "";
 my $lm = "";
+my $time = "";
+my $test = "";
+my $test2 = "";
 
 my $i = 0;
 my @chunks;
@@ -62,6 +65,7 @@ while ($line = <IN>)
     $end = "";
     $acoustic = "";
     $lm = "";
+    $time = "";
 
     # Find any fields in this line of text
     for ($i = 0; $i < scalar @chunks; $i++)
@@ -90,6 +94,10 @@ while ($line = <IN>)
 	{
 		$lm = substr($chunks[$i], 2);
 	}
+	elsif ($chunks[$i] =~ m/t=/)
+	{
+		$time = substr($chunks[$i], 2);
+	}
     }
 
     # Now determine if we had a node line or an edge line
@@ -98,7 +106,7 @@ while ($line = <IN>)
     # Discard emtpy start and end tags (otherwise graphviz throws an error)
     if(($start eq "") && ($end eq ""))
     {
-    printf STDERR "Discarding a edge line, because the start AND end label are empty\n";
+    printf STDERR "Discarding an edge line, because the start AND end label is empty\n";
     }
     else
     {
@@ -109,7 +117,28 @@ while ($line = <IN>)
     else
     {
 	# Node line
+    if($time eq "")
+    {
 	printf "\t$id [label = \"$word\"];\n";	
+    }
+    else
+    {
+    #replace > (greater than sign aka end node) with the html code (otherwise problems with dot
+    #rendering)
+    if($word eq ">")
+    {
+    $word="&gt;"
+    }
+    #replace > (smaller than sign aka start node) with the html code (otherwise problems with dot
+    #rendering)
+    elsif($word eq "<")
+    {
+    $word="&lt;"
+    }
+    #output the word with the time information. Print word bold and time smaller than the normal
+    #font
+	printf "\t$id [label = < <B>$word</B><br/><FONT POINT-SIZE='10'>t=$time</FONT> >];\n";	
+    }
     }
 }
 
