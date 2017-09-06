@@ -47,8 +47,6 @@ my $end = "";
 my $acoustic = "";
 my $lm = "";
 my $time = "";
-my $test = "";
-my $test2 = "";
 
 my $i = 0;
 my @chunks;
